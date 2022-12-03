@@ -1,0 +1,6 @@
+.Board {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  width: 560px;
+  height: 560px;
+}
