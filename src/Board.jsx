@@ -13,13 +13,12 @@ class Board extends React.Component {
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') this.setState({ direction: 'left' });
       if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') this.setState({ direction: 'right' });
-      if (e.key === 'ArrowTop' || e.key === 'w' || e.key === 'W') this.setState({ direction: 'top' });
-      if (e.key === 'ArrowBottom' || e.key === 's' || e.key === 'S') this.setState({ direction: 'bottom' });
-
-      console.log(this.state.direction);
+      if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') this.setState({ direction: 'top' });
+      if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') this.setState({ direction: 'bottom' });
     });
   }
   render() {
+    console.log(this.state.direction);
     let retSquares = Array(81);
     for (let i = 0; i < 12; i++) {
       for (let j = 0; j < 12; j++) {
