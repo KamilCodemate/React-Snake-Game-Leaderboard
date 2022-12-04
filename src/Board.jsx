@@ -5,13 +5,20 @@ class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      squares: Array(12).fill(Array(12).fill(<Square />)),
       head: [1, 0],
     };
   }
 
   render() {
-    return <div className='Board'>{this.state.squares}</div>;
+    let retSquares = Array(81);
+    for (let i = 0; i < 12; i++) {
+      for (let j = 0; j < 12; j++) {
+        if (i === this.state.head[0] && j === this.state.head[1]) {
+          retSquares.push(<Square actualColor={'yellow'} />);
+        } else retSquares.push(<Square actualColor={'none'} />);
+      }
+    }
+    return <div className='Board'>{retSquares}</div>;
   }
 }
 export default Board;
