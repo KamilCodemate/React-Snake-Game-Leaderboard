@@ -17,11 +17,12 @@ class Board extends React.Component {
       if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') this.setState({ direction: 'bottom' });
     });
   }
+
   render() {
     console.log(this.state.direction);
-    let retSquares = Array(81);
-    for (let i = 0; i < 12; i++) {
-      for (let j = 0; j < 12; j++) {
+    let retSquares = [];
+    for (let i = 0; i < 15; i++) {
+      for (let j = 0; j < 15; j++) {
         if (i === this.state.head[0] && j === this.state.head[1]) {
           retSquares.push(<Square actualColor={'yellow'} key={`squareRow${i}Col${j}`} />);
         } else retSquares.push(<Square actualColor={'none'} key={`squareRow${i}Col${j}`} />);
