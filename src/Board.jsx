@@ -1,105 +1,21 @@
 import React from 'react';
 import Square from './Square';
 import './Board.css';
-class Board extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      head: [0, 2],
-      apple: [],
-      direction: null,
-      body: [
-        [0, 0],
-        [0, 1],
-      ],
-
-      snakeLength: 2,
-    };
-    this.move = this.move.bind(this);
-    this.generateApple = this.generateApple.bind(this);
-  }
-  componentDidMount() {
-    this.generateApple();
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') this.setState({ direction: 'left' });
-      if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') this.setState({ direction: 'right' });
-      if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') this.setState({ direction: 'top' });
-      if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') this.setState({ direction: 'bottom' });
-    });
-    setInterval(() => this.move(), 100);
-  }
-
-  move() {
-    let newBody = this.state.body;
-    newBody.unshift(this.state.head);
-    if (newBody.length > this.state.snakeLength) {
-      newBody.pop();
-    }
-
-    switch (this.state.direction) {
-      case 'left':
-        this.setState((prevState) => ({
-          head: [prevState.head[0], prevState.head[1] - 1],
-          body: newBody,
-        }));
-        break;
-      case 'right':
-        this.setState((prevState) => ({
-          head: [prevState.head[0], prevState.head[1] + 1],
-          body: newBody,
-        }));
-        break;
-      case 'top':
-        this.setState((prevState) => ({
-          body: newBody,
-          head: [prevState.head[0] - 1, prevState.head[1]],
-        }));
-        break;
-      case 'bottom':
-        this.setState((prevState) => ({
-          body: newBody,
-          head: [prevState.head[0] + 1, prevState.head[1]],
-        }));
-        break;
-      default:
-        break;
-    }
-  }
-
-  generateApple() {
-    while (true) {
-      const appleRow = Math.floor(Math.random() * 15);
-      const appleColumn = Math.floor(Math.random() * 15);
-
-      if (
-        !(appleRow === this.state.head[0] && appleColumn === this.state.head[1]) &&
-        !this.state.body.some((square) => square[0] === appleRow && square[1] === appleColumn)
-      ) {
-        this.setState({
-          apple: [appleRow, appleColumn],
-        });
-        return;
+const Board = (props) => {
+  let retSquares = [];
+  for (let i = 0; i < 15; i++) {
+    for (let j = 0; j < 15; j++) {
+      if (i === props.head[0] && j === props.head[1]) {
+        retSquares.push(<Square key={i * 15 + j} actualColor='yellow' />);
+      } else if (props.body.some((square) => square[0] === i && square[1] === j)) {
+        retSquares.push(<Square key={i * 15 + j} actualColor='#00FF00' />);
+      } else if (i === props.apple[0] && j === props.apple[1]) {
+        retSquares.push(<Square key={i * 15 + j} actualColor='red' />);
+      } else {
+        retSquares.push(<Square key={i * 15 + j} actualColor='#171717' />);
       }
     }
   }
-
-  render() {
-    let retSquares = [];
-    for (let i = 0; i < 15; i++) {
-      for (let j = 0; j < 15; j++) {
-        if (i === this.state.head[0] && j === this.state.head[1]) {
-          retSquares.push(<Square key={i * 15 + j} actualColor='yellow' />);
-        } else if (this.state.body.some((square) => square[0] === i && square[1] === j)) {
-          retSquares.push(<Square key={i * 15 + j} actualColor='#00FF00' />);
-        } else if (i === this.state.apple[0] && j === this.state.apple[1]) {
-          retSquares.push(<Square key={i * 15 + j} actualColor='red' />);
-        } else {
-          retSquares.push(<Square key={i * 15 + j} actualColor='#171717' />);
-        }
-      }
-    }
-    return <div className='Board'>{retSquares}</div>;
-  }
-}
-
+  return <div className='Board'>{retSquares}</div>;
+};
 export default Board;
