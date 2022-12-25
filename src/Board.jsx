@@ -6,16 +6,20 @@ class Board extends React.Component {
     super(props);
     this.state = {
       head: [0, 2],
+      apple: [],
       direction: null,
       body: [
         [0, 0],
         [0, 1],
       ],
+
       snakeLength: 2,
     };
     this.move = this.move.bind(this);
+    this.generateApple = this.generateApple.bind(this);
   }
   componentDidMount() {
+    this.generateApple();
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') this.setState({ direction: 'left' });
       if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') this.setState({ direction: 'right' });
@@ -62,6 +66,23 @@ class Board extends React.Component {
     }
   }
 
+  generateApple() {
+    while (true) {
+      const appleRow = Math.floor(Math.random() * 15);
+      const appleColumn = Math.floor(Math.random() * 15);
+
+      if (
+        !(appleRow === this.state.head[0] && appleColumn === this.state.head[1]) &&
+        !this.state.body.some((square) => square[0] === appleRow && square[1] === appleColumn)
+      ) {
+        this.setState({
+          apple: [appleRow, appleColumn],
+        });
+        return;
+      }
+    }
+  }
+
   render() {
     let retSquares = [];
     for (let i = 0; i < 15; i++) {
@@ -70,6 +91,8 @@ class Board extends React.Component {
           retSquares.push(<Square key={i * 15 + j} actualColor='yellow' />);
         } else if (this.state.body.some((square) => square[0] === i && square[1] === j)) {
           retSquares.push(<Square key={i * 15 + j} actualColor='#00FF00' />);
+        } else if (i === this.state.apple[0] && j === this.state.apple[1]) {
+          retSquares.push(<Square key={i * 15 + j} actualColor='red' />);
         } else {
           retSquares.push(<Square key={i * 15 + j} actualColor='#171717' />);
         }
