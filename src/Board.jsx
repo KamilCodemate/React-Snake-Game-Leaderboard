@@ -7,8 +7,11 @@ class Board extends React.Component {
     this.state = {
       head: [0, 2],
       direction: null,
-      body: [[0, 0]],
-      snakeLength: 1,
+      body: [
+        [0, 0],
+        [0, 1],
+      ],
+      snakeLength: 2,
     };
     this.move = this.move.bind(this);
   }
@@ -58,13 +61,18 @@ class Board extends React.Component {
         break;
     }
   }
+
   render() {
     let retSquares = [];
     for (let i = 0; i < 15; i++) {
       for (let j = 0; j < 15; j++) {
         if (i === this.state.head[0] && j === this.state.head[1]) {
-          retSquares.push(<Square actualColor={'yellow'} key={`squareRow${i}Col${j}`} />);
-        } else retSquares.push(<Square actualColor={'#171717'} key={`squareRow${i}Col${j}`} />);
+          retSquares.push(<Square key={i * 15 + j} actualColor='yellow' />);
+        } else if (this.state.body.some((square) => square[0] === i && square[1] === j)) {
+          retSquares.push(<Square key={i * 15 + j} actualColor='#00FF00' />);
+        } else {
+          retSquares.push(<Square key={i * 15 + j} actualColor='#171717' />);
+        }
       }
     }
     return <div className='Board'>{retSquares}</div>;
