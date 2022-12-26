@@ -10,8 +10,9 @@ class Game extends React.Component {
       apple: [],
       direction: null,
       body: [[0, 1]],
-
       snakeLength: 1,
+      displayText: 'Press [SPACE] to start the game',
+      didGameStarted: false,
     };
     this.move = this.move.bind(this);
     this.generateApple = this.generateApple.bind(this);
@@ -21,10 +22,23 @@ class Game extends React.Component {
   componentDidMount() {
     this.generateApple();
     document.addEventListener('keydown', (e) => {
-      if ((e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') && this.state.direction !== 'right') this.setState({ direction: 'left' });
-      if ((e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') && this.state.direction !== 'left') this.setState({ direction: 'right' });
-      if ((e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') && this.state.direction !== 'bottom') this.setState({ direction: 'top' });
-      if ((e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') && this.state.direction !== 'top') this.setState({ direction: 'bottom' });
+      if (e.code === 'Space') {
+        this.setState({
+          didGameStarted: true,
+          direction: 'right',
+          displayText: '',
+        });
+      }
+    });
+    document.addEventListener('keydown', (e) => {
+      if ((e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') && this.state.direction !== 'right' && this.state.didGameStarted)
+        this.setState({ direction: 'left' });
+      if ((e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') && this.state.direction !== 'left' && this.state.didGameStarted)
+        this.setState({ direction: 'right' });
+      if ((e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') && this.state.direction !== 'bottom' && this.state.didGameStarted)
+        this.setState({ direction: 'top' });
+      if ((e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') && this.state.direction !== 'top' && this.state.didGameStarted)
+        this.setState({ direction: 'bottom' });
     });
     setInterval(() => this.move(), 120);
   }
@@ -118,7 +132,7 @@ class Game extends React.Component {
             </div>
           </div>
         </div>
-        <div className='start'></div>
+        <div className='start'>{this.state.displayText}</div>
       </div>
     );
   }
