@@ -8,7 +8,7 @@ You lose when you hit your head on the end of the map or your own body.
 You can control the snake with the arrow keys or the W, A, S, D keys.
 
 ## Running the game
-Clone or download the repo. In main directory run `npm install` to install all node dependencies. After this run `npm start`. This will enable the local server on your computer. It should also automatically open your browser on the appropriate port. This will enable the local server on your computer. It should also automatically open your browser on the appropriate port. If it doesn't, enable it manually and enter localhost:3000 in the search box
+Clone or download the repo. In main directory run `npm install` to install all node dependencies. After this run `npm start`. This will enable the local server on your computer. It should also automatically open your browser on the appropriate port. This will enable the local server on your computer. If it doesn't, enable it manually and enter localhost:3000 in the search box
 
 ## Other Available Scripts
 
