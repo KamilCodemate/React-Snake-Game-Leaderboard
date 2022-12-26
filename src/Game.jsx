@@ -17,6 +17,7 @@ class Game extends React.Component {
     };
     this.move = this.move.bind(this);
     this.generateApple = this.generateApple.bind(this);
+    this.isAppleEaten = this.isAppleEaten.bind(this);
   }
   componentDidMount() {
     this.generateApple();
@@ -64,6 +65,7 @@ class Game extends React.Component {
       default:
         break;
     }
+    this.isAppleEaten();
   }
 
   generateApple() {
@@ -80,6 +82,15 @@ class Game extends React.Component {
         });
         return;
       }
+    }
+  }
+
+  isAppleEaten() {
+    if (this.state.head[0] === this.state.apple[0] && this.state.head[1] === this.state.apple[1]) {
+      this.setState((prevState) => ({
+        snakeLength: prevState.snakeLength + 1,
+      }));
+      this.generateApple();
     }
   }
 
