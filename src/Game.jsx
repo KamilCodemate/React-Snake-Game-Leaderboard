@@ -1,5 +1,6 @@
 import React from 'react';
 import Board from './Board';
+import './Game.css';
 
 class Game extends React.Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class Game extends React.Component {
       if ((e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') && this.state.direction !== 'bottom') this.setState({ direction: 'top' });
       if ((e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') && this.state.direction !== 'top') this.setState({ direction: 'bottom' });
     });
-    setInterval(() => this.move(), 150);
+    setInterval(() => this.move(), 120);
   }
 
   move() {
@@ -106,8 +107,18 @@ class Game extends React.Component {
   }
   render() {
     return (
-      <div>
-        <Board head={this.state.head} body={this.state.body} apple={this.state.apple} />
+      <div className='container'>
+        <div className='mainGame'>
+          <div className='board'>
+            <Board head={this.state.head} body={this.state.body} apple={this.state.apple} />
+          </div>
+          <div className='stats'>
+            <div className='points'>
+              <span>Points: {this.state.snakeLength - 1}</span>
+            </div>
+          </div>
+        </div>
+        <div className='start'></div>
       </div>
     );
   }
