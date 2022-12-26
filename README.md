@@ -31,7 +31,3 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-## Inquiries, suggestions and reporting problems
-You can report all this to me on my e-mail - kamil.codemate@gmail.com . I will answer as far as possible.
-
