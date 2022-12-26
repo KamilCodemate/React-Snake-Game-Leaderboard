@@ -22,10 +22,10 @@ class Game extends React.Component {
   componentDidMount() {
     this.generateApple();
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') this.setState({ direction: 'left' });
-      if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') this.setState({ direction: 'right' });
-      if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') this.setState({ direction: 'top' });
-      if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') this.setState({ direction: 'bottom' });
+      if ((e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') && this.state.direction !== 'right') this.setState({ direction: 'left' });
+      if ((e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') && this.state.direction !== 'left') this.setState({ direction: 'right' });
+      if ((e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') && this.state.direction !== 'bottom') this.setState({ direction: 'top' });
+      if ((e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') && this.state.direction !== 'top') this.setState({ direction: 'bottom' });
     });
     setInterval(() => this.move(), 100);
   }
