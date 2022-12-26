@@ -8,16 +8,14 @@ class Game extends React.Component {
       head: [0, 2],
       apple: [],
       direction: null,
-      body: [
-        [0, 0],
-        [0, 1],
-      ],
+      body: [[0, 1]],
 
-      snakeLength: 2,
+      snakeLength: 1,
     };
     this.move = this.move.bind(this);
     this.generateApple = this.generateApple.bind(this);
     this.isAppleEaten = this.isAppleEaten.bind(this);
+    this.checkLose = this.checkLose.bind(this);
   }
   componentDidMount() {
     this.generateApple();
@@ -27,7 +25,7 @@ class Game extends React.Component {
       if ((e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') && this.state.direction !== 'bottom') this.setState({ direction: 'top' });
       if ((e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') && this.state.direction !== 'top') this.setState({ direction: 'bottom' });
     });
-    setInterval(() => this.move(), 100);
+    setInterval(() => this.move(), 150);
   }
 
   move() {
@@ -66,6 +64,7 @@ class Game extends React.Component {
         break;
     }
     this.isAppleEaten();
+    this.checkLose();
   }
 
   generateApple() {
@@ -94,6 +93,17 @@ class Game extends React.Component {
     }
   }
 
+  checkLose() {
+    const head = this.state.head;
+    const body = this.state.body;
+    if (head[0] > 14 || head[0] < 0 || head[1] > 14 || head[1] < 0) {
+      console.log('lose by quitting map!');
+    }
+
+    if (body.slice(1).some((square) => square[0] === head[0] && square[1] === head[1])) {
+      console.log('Lose by hit yourself');
+    }
+  }
   render() {
     return (
       <div>
