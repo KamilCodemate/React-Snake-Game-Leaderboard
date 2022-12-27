@@ -1,6 +1,7 @@
 import React from 'react';
 import Board from './Board';
 import './Game.css';
+import Leadeboard from './Leaderboard';
 
 class Game extends React.Component {
   constructor(props) {
@@ -144,6 +145,7 @@ class Game extends React.Component {
             <div className='points'>
               <span>Points: {this.state.snakeLength - 1}</span>
             </div>
+            <Leadeboard />
           </div>
         </div>
         <div className='start'>{this.state.displayText}</div>
