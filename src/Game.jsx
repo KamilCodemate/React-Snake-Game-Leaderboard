@@ -17,17 +17,20 @@ class Game extends React.Component {
     this.move = this.move.bind(this);
     this.generateApple = this.generateApple.bind(this);
     this.isAppleEaten = this.isAppleEaten.bind(this);
-    this.checkLose = this.checkLose.bind(this);
+    this.checkLoss = this.checkLoss.bind(this);
+    this.handleLoss = this.handleLoss.bind(this);
   }
   componentDidMount() {
-    this.generateApple();
     document.addEventListener('keydown', (e) => {
       if (e.code === 'Space') {
-        this.setState({
-          didGameStarted: true,
-          direction: 'right',
-          displayText: '',
-        });
+        if (!this.state.didGameStarted) {
+          this.generateApple();
+          this.setState({
+            didGameStarted: true,
+            direction: 'right',
+            displayText: '',
+          });
+        }
       }
     });
     document.addEventListener('keydown', (e) => {
@@ -79,7 +82,7 @@ class Game extends React.Component {
         break;
     }
     this.isAppleEaten();
-    this.checkLose();
+    this.checkLoss();
   }
 
   generateApple() {
@@ -108,16 +111,27 @@ class Game extends React.Component {
     }
   }
 
-  checkLose() {
+  checkLoss() {
     const head = this.state.head;
     const body = this.state.body;
     if (head[0] > 14 || head[0] < 0 || head[1] > 14 || head[1] < 0) {
-      console.log('lose by quitting map!');
+      this.handleLoss('quitting map');
     }
 
     if (body.slice(1).some((square) => square[0] === head[0] && square[1] === head[1])) {
-      console.log('Lose by hit yourself');
+      this.handleLoss('hit yourself');
     }
+  }
+
+  handleLoss(reason) {
+    this.setState({
+      didGameStarted: false,
+      displayText: `Loss by ${reason}. Press [SPACE] to try again`,
+      direction: null,
+      body: [[0, 1]],
+      head: [0, 2],
+      snakeLength: 1,
+    });
   }
   render() {
     return (
