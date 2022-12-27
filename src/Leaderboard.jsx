@@ -1,14 +1,22 @@
 import React from 'react';
+import './Leaderboard.css';
 
 class Leadeboard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: [],
+    };
+  }
   componentDidMount() {
     fetch('http://localhost/leaderboard/leaders.php')
       .then((response) => {
-        console.log(response);
         return response.json();
       })
       .then((result) => {
-        console.log(result);
+        this.setState({
+          data: result,
+        });
       })
       .catch((error) => {
         console.log('an error occured: ' + error);
@@ -26,11 +34,20 @@ class Leadeboard extends React.Component {
       </thead>
     );
 
+    const leaders = this.state.data.map((element) => {
+      return (
+        <tr>
+          <td>{element.name}</td>
+          <td>{element.surname}</td>
+          <td>{element.points}</td>
+        </tr>
+      );
+    });
     return (
       <div className='leaderboard'>
         <table>
           {headers}
-          <tbody></tbody>
+          <tbody>{leaders}</tbody>
         </table>
       </div>
     );
