@@ -13,18 +13,24 @@ class Game extends React.Component {
       direction: null,
       body: [[0, 1]],
       snakeLength: 1,
-      displayText: 'Press [SPACE] to start the game',
+      displayText: 'Fill form to start the game.',
       didGameStarted: false,
+      fillForm: false,
+      playerName: '',
+      playerSurname: '',
     };
     this.move = this.move.bind(this);
     this.generateApple = this.generateApple.bind(this);
     this.isAppleEaten = this.isAppleEaten.bind(this);
     this.checkLoss = this.checkLoss.bind(this);
     this.handleLoss = this.handleLoss.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleSurnameChange = this.handleSurnameChange.bind(this);
   }
   componentDidMount() {
     document.addEventListener('keydown', (e) => {
-      if (e.code === 'Space') {
+      if (e.code === 'Space' && this.state.fillForm) {
         if (!this.state.didGameStarted) {
           this.generateApple();
           this.setState({
@@ -135,7 +141,24 @@ class Game extends React.Component {
       snakeLength: 1,
     });
   }
-
+  handleSubmit(e) {
+    console.log('dziala');
+    this.setState({
+      fillForm: true,
+      displayText: 'Press [SPACE] to start the game',
+    });
+    e.preventDefault();
+  }
+  handleNameChange(e) {
+    this.setState({
+      playerName: e.target.value,
+    });
+  }
+  handleSurnameChange(e) {
+    this.setState({
+      playerSurname: e.target.value,
+    });
+  }
   render() {
     return (
       <div className='container'>
@@ -148,7 +171,15 @@ class Game extends React.Component {
               <span>Points: {this.state.snakeLength - 1}</span>
             </div>
             <div className='other'>
-              {!this.state.didGameStarted && <PlayerForm />}
+              {!this.state.fillForm && (
+                <PlayerForm
+                  handleSubmit={this.handleSubmit}
+                  handleNameChange={this.handleNameChange}
+                  handleSurnameChange={this.handleSurnameChange}
+                  nameValue={this.state.playerName}
+                  surnameValue={this.state.playerSurname}
+                />
+              )}
               <Leadeboard />
             </div>
           </div>

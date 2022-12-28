@@ -5,8 +5,8 @@ const PlayerForm = (props) => {
     <div className='playerForm'>
       <form onSubmit={props.handleSubmit}>
         <label>Name: </label> <br />
-        <input type='text' onChange={props.handleNameChange} /> <br />
-        <label>Surname: </label> <br /> <input type='text' onChange={props.handleSurnameChange} /> <br />
+        <input type='text' onChange={props.handleNameChange} value={props.nameValue} /> <br />
+        <label>Surname: </label> <br /> <input type='text' onChange={props.handleSurnameChange} value={props.surnameValue} /> <br />
         <input type='submit' value='OK' />
       </form>
     </div>
