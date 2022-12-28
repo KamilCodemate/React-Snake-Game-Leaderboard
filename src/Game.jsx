@@ -132,6 +132,17 @@ class Game extends React.Component {
   }
 
   handleLoss(reason) {
+    fetch('http://localhost/leaderboard/leadersSend.php', {
+      method: 'POST',
+      body: JSON.stringify({
+        name: this.state.playerName,
+        surname: this.state.playerSurname,
+        points: this.state.snakeLength - 1,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
     this.setState({
       didGameStarted: false,
       displayText: `Loss by ${reason}. Press [SPACE] to try again`,
