@@ -1,0 +1,34 @@
+.playerForm {
+  width: fit-content;
+  height: fit-content;
+}
+
+.playerForm form {
+  border: 1px solid white;
+  width: fit-content;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.playerForm label {
+  font-size: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 10px;
+}
+
+.playerForm input[type='text'] {
+  width: 20vw;
+  height: 50px;
+  border-radius: 10px;
+  font-size: 20px;
+  padding-left: 10px;
+}
+
+.playerForm input[type='submit'] {
+  width: 150px;
+  height: 60px;
+  font-size: 30px;
+  font-weight: 700;
+  border-radius: 10px;
+}

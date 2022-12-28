@@ -2,6 +2,7 @@ import React from 'react';
 import Board from './Board';
 import './Game.css';
 import Leadeboard from './Leaderboard';
+import PlayerForm from './PlayerForm';
 
 class Game extends React.Component {
   constructor(props) {
@@ -134,6 +135,7 @@ class Game extends React.Component {
       snakeLength: 1,
     });
   }
+
   render() {
     return (
       <div className='container'>
@@ -145,7 +147,10 @@ class Game extends React.Component {
             <div className='points'>
               <span>Points: {this.state.snakeLength - 1}</span>
             </div>
-            <Leadeboard />
+            <div className='other'>
+              {!this.state.didGameStarted && <PlayerForm />}
+              <Leadeboard />
+            </div>
           </div>
         </div>
         <div className='start'>{this.state.displayText}</div>
