@@ -1,4 +1,6 @@
-# React-Snake-Game
+# React-Snake-Game 
+#### This is a version of the [previous snake game](https://github.com/KamilCodemate/React-Snake-Game) with an additional leaderboard.
+<br/>
 
 ## Rules
 
