@@ -1,6 +1,6 @@
 import React from 'react';
 import Board from './Board';
-import './Game.css';
+import '../css/Game.css';
 import Leadeboard from './Leaderboard';
 import PlayerForm from './PlayerForm';
 

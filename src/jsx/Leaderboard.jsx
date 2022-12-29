@@ -1,5 +1,5 @@
 import React from 'react';
-import './Leaderboard.css';
+import '../css/Leaderboard.css';
 
 class Leadeboard extends React.Component {
   constructor(props) {

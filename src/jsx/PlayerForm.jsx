@@ -1,5 +1,5 @@
 import React from 'react';
-import './PlayerForm.css';
+import '../css/PlayerForm.css';
 const PlayerForm = (props) => {
   return (
     <div className='playerForm'>
