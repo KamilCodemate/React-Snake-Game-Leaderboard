@@ -129,6 +129,9 @@ class Game extends React.Component {
     if (body.slice(1).some((square) => square[0] === head[0] && square[1] === head[1])) {
       this.handleLoss('hit yourself');
     }
+    if (this.state.snakeLength >= 254) {
+      this.handleLoss('win');
+    }
   }
 
   handleLoss(reason) {
@@ -151,6 +154,11 @@ class Game extends React.Component {
       head: [0, 2],
       snakeLength: 1,
     });
+    if (reason === 'win') {
+      this.setState({
+        displayText: 'Congrats! You won! Press [SPACE] to play again',
+      });
+    }
   }
   handleSubmit(e) {
     console.log('dziala');
