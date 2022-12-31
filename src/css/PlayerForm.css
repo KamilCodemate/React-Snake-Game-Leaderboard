@@ -23,6 +23,7 @@
   border-radius: 10px;
   font-size: 20px;
   padding-left: 10px;
+  transition: 0.6s all;
 }
 
 .playerForm input[type='submit'] {
@@ -31,4 +32,12 @@
   font-size: 30px;
   font-weight: 700;
   border-radius: 10px;
+  transition: 0.6s all;
+}
+.playerForm input[type='text']:hover {
+  background-color: rgb(255, 216, 143);
+}
+.playerForm input[type='submit']:hover {
+  background-color: rgb(255, 201, 102);
+  cursor: pointer;
 }

@@ -7,7 +7,7 @@ const PlayerForm = (props) => {
         <label>Name: </label> <br />
         <input type='text' onChange={props.handleNameChange} value={props.nameValue} /> <br />
         <label>Surname: </label> <br /> <input type='text' onChange={props.handleSurnameChange} value={props.surnameValue} /> <br />
-        <input type='submit' value='OK' />
+        <input type='submit' value='OK' disabled={!(props.nameValue.length > 0 && props.surnameValue.length > 0)} />
       </form>
     </div>
   );

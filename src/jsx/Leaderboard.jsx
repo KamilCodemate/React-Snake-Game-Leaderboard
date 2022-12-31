@@ -27,6 +27,7 @@ class Leadeboard extends React.Component {
     const headers = (
       <thead>
         <tr>
+          <th key='placeHeader'>#</th>
           <th key='nameHeader'>Name</th>
           <th key='surnameHeader'>Surname</th>
           <th key='pointsHeader'>Points</th>
@@ -37,6 +38,7 @@ class Leadeboard extends React.Component {
     const leaders = this.state.data.map((element, index) => {
       return (
         <tr key={`row${index}`}>
+          <td key={`placeRow${index}`}>{index + 1}</td>
           <td key={`nameRow${index}`}>{element.name}</td>
           <td key={`surnameRow${index}`}>{element.surname}</td>
           <td key={`pointsRow${index}`}>{element.points}</td>
