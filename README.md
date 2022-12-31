@@ -4,7 +4,7 @@
 
 ## Rules
 
-Nothing hard. Just try to eat (touch by head) the apples that appear on the map. 1 eaten apple = 1 point, bul also it makes your snake's body longer.
+Nothing hard. Just try to eat (touch by head) the apples that appear on the map. 1 eaten apple = 1 point, but also it makes your snake's body longer.
 More points = better score. The game, however, can be won by eating enough apples to physically occupy the entire map. If you do, you are a true grandmaster.
 You lose when you hit your head on the end of the map or your own body.
 
