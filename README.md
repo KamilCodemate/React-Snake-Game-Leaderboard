@@ -21,11 +21,11 @@ Running this version of the project is a bit more complicated than the [non-lead
 4. The `xampp` folder should appear in the indicated location (by default it is drive C);
 5. Move the `leaderboard` folder (in the main project folder) to the `xampp/htdocs` folder;
 6. Launch the xampp control panel and start `Apache` and `MySql` module;
-7. Go to `http://localhost/phpmyadmin/` and import the `leaderboard/leaderboard.sql` file;
+7. Go to `http://localhost/phpmyadmin/`, create a new database named `leaderboard` and import `leaderboard/leaderboard.sql` file into it;
 8. In the main project directory run `npm run` to start the app.
 
 ## Collecting data
-All the data you provide in the form is saved in the local database and no one else can see the changes.
+All the data you provide in the form is saved in the local database and no one else can see the changes, including me.
 
 ## Other Available Scripts
 
